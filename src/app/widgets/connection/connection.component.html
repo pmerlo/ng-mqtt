@@ -1,0 +1,17 @@
+<h3>Connection</h3>
+
+<mat-form-field>
+  <input matInput placeholder="Hostname" [(ngModel)]="hostname" />
+</mat-form-field><br />
+
+<mat-form-field>
+  <input matInput placeholder="Port" [(ngModel)]="port" />
+</mat-form-field><br />
+
+<button mat-button color="primary" [disabled]="connected$ | async" (click)="connect()">
+  CONNECT
+</button>
+
+<button mat-button color="accent" [disabled]="!(connected$ | async)" (click)="disconnect()">
+  DISCONNECT
+</button>

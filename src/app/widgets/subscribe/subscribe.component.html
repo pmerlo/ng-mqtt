@@ -1,0 +1,17 @@
+<h3>Subscribe</h3>
+
+<mat-form-field>
+  <input matInput placeholder="Topic" [(ngModel)]="topic" />
+</mat-form-field><br />
+
+<button mat-button color="primary" [disabled]="!(connected$ | async)" (click)="subscribe()">
+  SUBSCRIBE
+</button>
+
+<h3>Messages</h3>
+
+<div *ngIf="messages.length > 0">
+  <p *ngFor="let message of messages.reverse()">
+    <span>{{ (message.timestamp | date: 'HH:mm:ss.SSS') + ': ' + message.topic + '  ' + message.payload }}</span>
+  </p>
+</div>

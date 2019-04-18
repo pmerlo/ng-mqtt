@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  padding: 10px 20px;
+}
+
+.widget-container {
+  flex: 1 1 auto;
+
+  height: fit-content;
+  margin: 40px 20px;
+  padding: 15px 30px;
+  border-radius: 10px;
+
+}

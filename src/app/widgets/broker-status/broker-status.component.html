@@ -1,0 +1,21 @@
+<h3>Broker status</h3>
+
+<div *ngIf="statusMessages.length > 0 else noStatus">
+  <mat-table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="name">
+      <mat-header-cell mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="value">
+      <mat-header-cell mat-header-cell *matHeaderCellDef>Value</mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let row">{{ (row.value$ | async) || 'n/a' }}</mat-cell>
+    </ng-container>
+
+    <mat-row mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+</div>
+
+<ng-template #noStatus>
+  n/a
+</ng-template>

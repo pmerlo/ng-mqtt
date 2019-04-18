@@ -1,0 +1,13 @@
+<h3>Publish</h3>
+
+<mat-form-field>
+  <input matInput placeholder="Topic" [(ngModel)]="topic" />
+</mat-form-field><br />
+
+<mat-form-field>
+  <input matInput placeholder="Payload" [(ngModel)]="payload" />
+</mat-form-field><br />
+
+<button mat-button color="primary" [disabled]="!(connected$ | async)" (click)="publish()">
+  PUBLISH
+</button>
