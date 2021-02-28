@@ -1,14 +1,17 @@
-FROM node
+FROM node:14.16.0-alpine3.12
 
-RUN npm install -g @angular/cli
+RUN npm install -g http-server
 
 WORKDIR /usr/app
 
-COPY package*.json ./
+COPY package.json ./
 RUN npm install
 
 COPY . .
+RUN npm run build --prod
 
-EXPOSE 4200
+WORKDIR /usr/app/dist/ng-mqtt
 
-CMD ["ng" , "serve"]
+EXPOSE 8080
+
+CMD ["http-server"]
