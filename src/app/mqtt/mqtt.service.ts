@@ -12,7 +12,9 @@ export class MqttService {
   private client: MqttClient;
   private _connected = new BehaviorSubject<boolean>(false);
 
-  constructor(@Inject(MQTT_BROKER_CONFIG) private config: MqttBrokerConfig) { }
+  constructor(@Inject(MQTT_BROKER_CONFIG) private config: MqttBrokerConfig) {
+    this.client = new MqttClient();
+  }
 
   connect(): Observable<boolean> {
     this.client = new MqttClient();
@@ -43,7 +45,7 @@ export class MqttService {
 
 }
 
-function topicMatchesFilter(topic, topicFilter): boolean {
+function topicMatchesFilter(topic: string, topicFilter: string): boolean {
   const filterTokens = topicFilter.split('/');
   const topicTokens = topic.split('/');
 

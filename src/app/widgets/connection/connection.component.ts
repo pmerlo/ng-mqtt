@@ -10,7 +10,7 @@ import { MqttService } from 'src/app/mqtt';
 })
 export class ConnectionComponent implements OnInit {
 
-  connected$: Observable<boolean>;
+  connected$: Observable<boolean> = new Observable<boolean>();
 
   hostname = '192.168.5.217';
   port = 1884;

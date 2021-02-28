@@ -16,11 +16,10 @@ interface MessageEvent {
 })
 export class SubscribeComponent implements OnInit, OnDestroy {
 
-  connected$: Observable<boolean>;
+  connected$: Observable<boolean> = new Observable<boolean>();
 
   topic = 'alpha/testing/hello';
   messages: MessageEvent[] = [];
-  date: Date;
 
   private subscription = new Subscription();
 

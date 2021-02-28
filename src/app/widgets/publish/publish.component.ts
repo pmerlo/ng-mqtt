@@ -10,7 +10,7 @@ import { MqttService } from 'src/app/mqtt';
 })
 export class PublishComponent implements OnInit, OnDestroy {
 
-  connected$: Observable<boolean>;
+  connected$: Observable<boolean> = new Observable<boolean>();
 
   topic = 'alpha/testing/hello';
   payload = 'world';

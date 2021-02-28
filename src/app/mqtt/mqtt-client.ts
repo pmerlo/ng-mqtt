@@ -1,7 +1,7 @@
 import { EventEmitter } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { connect } from 'mqtt/dist/mqtt.min.js';
+import * as mqtt from 'mqtt';
 
 import { MqttMessage, MqttBrokerConfig } from './models';
 
@@ -68,7 +68,7 @@ export class MqttClient {
   }
 
   connect(config: MqttBrokerConfig) {
-    this.client = connect(`ws://${config.hostname}:${config.port}${config.path}`, {
+    this.client = mqtt.connect(`ws://${config.hostname}:${config.port}${config.path}`, {
       clientId: this.clientId
     });
 
@@ -103,7 +103,7 @@ export class MqttClient {
     this._offline.emit();
   }
 
-  private onError = (error) => {
+  private onError = (error: any) => {
     logCall('onError', error);
     this._error.emit(error);
   }
@@ -113,7 +113,7 @@ export class MqttClient {
     this._end.emit();
   }
 
-  private onMessage = (topic, message, packet) => {
+  private onMessage = (topic: any, message: any, packet: any) => {
     logCall('onMessage', topic, message, packet);
     this._message.emit({
       topic: topic,
@@ -121,12 +121,12 @@ export class MqttClient {
     });
   }
 
-  private onPacketsend = (packet) => {
+  private onPacketsend = (packet: any) => {
     logCall('onPacketsend', packet);
     this._packetsend.emit(packet);
   }
 
-  private onPacketreceive = (packet) => {
+  private onPacketreceive = (packet: any) => {
     logCall('onPacketreceive', packet);
     this._packetreceive.emit(packet);
   }
@@ -142,7 +142,7 @@ export class MqttClient {
     this.client.publish(topic, message, options, this.onPublish);
   }
 
-  private onPublish = (err) => {
+  private onPublish = (err: any) => {
     logCall('onPublish', err);
   }
 
@@ -151,7 +151,7 @@ export class MqttClient {
     this.client.subscribe(topic, options, this.onSubscribe);
   }
 
-  private onSubscribe = (err, granted: Suback[]) => {
+  private onSubscribe = (err: any, granted: Suback[]) => {
     logCall('onSubscribe', err, granted);
   }
 
@@ -161,7 +161,7 @@ function generateClientId(): string {
   return Date.now() + '_' + Math.random().toString(16).substr(2, 8);
 }
 
-function logCall(method: string, ...args) {
+function logCall(method: string, ...args: any[]) {
   // console.log(`MqttClient # ${method}`);
   // args.forEach(arg => console.log(arg));
   // console.log('---');

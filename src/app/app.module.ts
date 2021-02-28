@@ -2,39 +2,14 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import * as Mat from '@angular/material';
+
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatTableModule } from '@angular/material/table';
 
 import { AppComponent } from './app.component';
 import * as Widgets from './widgets';
 import { MQTT_BROKER_CONFIG } from './mqtt';
-
-const Material = [
-  Mat.MatButtonModule,
-  Mat.MatCardModule,
-  Mat.MatCheckboxModule,
-  Mat.MatChipsModule,
-  Mat.MatDialogModule,
-  Mat.MatDividerModule,
-  Mat.MatFormFieldModule,
-  Mat.MatIconModule,
-  Mat.MatInputModule,
-  Mat.MatListModule,
-  Mat.MatMenuModule,
-  Mat.MatPaginatorModule,
-  Mat.MatProgressSpinnerModule,
-  Mat.MatRadioModule,
-  Mat.MatSelectModule,
-  Mat.MatSidenavModule,
-  Mat.MatSlideToggleModule,
-  Mat.MatSnackBarModule,
-  Mat.MatSortModule,
-  Mat.MatStepperModule,
-  Mat.MatTableModule,
-  Mat.MatTabsModule,
-  Mat.MatToolbarModule,
-  Mat.MatTooltipModule,
-  Mat.MatMenuModule
-];
 
 @NgModule({
   declarations: [
@@ -49,7 +24,9 @@ const Material = [
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    ...Material
+    MatInputModule,
+    MatFormFieldModule,
+    MatTableModule,
   ],
   providers: [
     {
